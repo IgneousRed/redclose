@@ -1,0 +1,12 @@
+.work/
+.private/
+.local/
+.vendor/
+dist/
+cache/
+caches/
+.cache/
+.DS_Store
+AGENTS.md
+notes/
+docs/validation.md

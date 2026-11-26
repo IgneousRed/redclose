@@ -1,0 +1,63 @@
+REDCLOSE — READ ME FIRST
+
+EXPERIMENTAL 1.1.0-beta.1 — Apple Silicon (arm64) only.
+Builds target macOS 13 or later; runtime checks were performed on macOS
+27.2.1 only. Older systems and Intel are unvalidated. This is not stable.
+
+INSTALL
+1. Move RedClose.app to Applications (or your user's Applications folder).
+2. Open it. RedClose is ad-hoc signed, NOT signed with an Apple Developer ID
+   and NOT notarized. If macOS blocks a download you trust, try opening it,
+   then use System Settings > Privacy & Security > Open Anyway if offered.
+   A managed Mac may not allow this. Do not disable Gatekeeper system-wide.
+   Apple guidance: https://support.apple.com/en-us/102445
+3. Follow the setup window to grant Accessibility access to this copy.
+   No Screen Recording permission is needed.
+4. Use the menu-bar icon to pause, choose app exceptions, or quit.
+   Launch at login is optional and controlled from General settings.
+
+OLDER INSTALLATION
+If you used the old install.sh version, choose Replace Older Startup Entry
+in General settings from the new copy in Applications. Confirm the migration;
+it stops the old service and backs up the old plist before removing its entry.
+The old app remains in ~/Library/Application Support/RedClose for recovery.
+If macOS declines login registration, the action reports the error rather
+than silently installing a new launch agent.
+
+UPDATES
+Quit RedClose before replacing it at the same location. Your rules survive.
+A new ad-hoc signature can require removing the old Accessibility entry and
+adding the new app again. Users handle these macOS approvals; no Apple
+account, notarization service or automatic updater is used by RedClose.
+Check for Updates opens https://github.com/IgneousRed/redclose/releases
+in your browser. It does not download or install updates.
+
+REMOVE
+Turn off Launch at login in RedClose settings, then Quit RedClose.
+Move the app to the Trash and remove it from the Accessibility list.
+For an unmigrated old script installation, use its uninstall.sh --legacy
+helper or unload its local.redclose login service before removing the plist.
+Do not just delete the old app while its KeepAlive launch agent is enabled.
+
+DATA LEFT BEHIND
+Preferences: ~/Library/Preferences/local.redclose.plist
+Legacy app, lock and startup backups: ~/Library/Application Support/RedClose
+Legacy startup entry (before migration):
+  ~/Library/LaunchAgents/local.redclose.plist
+Old script-installation logs: ~/Library/Logs/RedClose
+Diagnostic exports: wherever you saved them
+
+Preferences and backups are not automatically deleted. To deliberately reset
+preferences after quitting the app, run: defaults delete local.redclose
+Keep any legacy app/startup backup you still need. The new app records optional
+activity only in memory and never uploads it. Your exported files remain yours
+to review and delete. No window titles, document contents or keystrokes are
+included in RedClose diagnostics.
+
+BETA
+Check your own apps before relying on last-window quitting. Save prompts,
+full-screen/other-Space windows and app-specific close behavior need real
+usage validation. When window state is uncertain, RedClose leaves apps running.
+
+LICENCE
+MIT — Copyright (c) 2026 IgneousRed. See the included LICENSE file.
